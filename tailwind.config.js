@@ -19,6 +19,10 @@ module.exports = {
     extend: {
       colors: {
         dark: '#111'
+      },
+
+      spacing: {
+        '84': '20rem',
       }
     }
   },

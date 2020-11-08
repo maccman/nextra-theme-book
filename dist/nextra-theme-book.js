@@ -669,7 +669,7 @@ function Sidebar({
   anchors
 }) {
   return /*#__PURE__*/React__default.createElement("aside", {
-    className: `h-screen bg-white dark:bg-dark flex-shrink-0 w-full md:w-64 md:border-r dark:border-gray-800 md:block fixed md:sticky z-10 transition-colors duration-200 ${show ? '' : 'hidden'}`,
+    className: `h-screen bg-white dark:bg-dark flex-shrink-0 w-full lg:w-84 md:w-64 md:border-r dark:border-gray-800 md:block fixed md:sticky z-10 transition-colors duration-200 ${show ? '' : 'hidden'}`,
     style: {
       top: '4rem',
       height: 'calc(100vh - 4rem)'
@@ -811,9 +811,9 @@ const Layout = ({
     anchors: anchors,
     directories: directories
   })), /*#__PURE__*/React__default.createElement(skipNav.SkipNavContent, null), meta.full ? /*#__PURE__*/React__default.createElement("content", {
-    className: "prose relative pt-16 w-full overflow-x-hidden"
+    className: "relative pt-16 w-full overflow-x-hidden"
   }, children) : /*#__PURE__*/React__default.createElement("content", {
-    className: "prose relative pt-20 pb-16 px-6 md:px-8 w-full max-w-full overflow-x-hidden xl:pr-64"
+    className: "relative pt-20 pb-16 px-6 md:px-8 w-full max-w-full overflow-x-hidden xl:pr-64"
   }, /*#__PURE__*/React__default.createElement("main", {
     className: "max-w-screen-md mx-auto"
   }, /*#__PURE__*/React__default.createElement(Theme, null, children), /*#__PURE__*/React__default.createElement("footer", {
