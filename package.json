@@ -22,6 +22,7 @@
     "@mdx-js/react": "^1.6.16",
     "@reach/skip-nav": "^0.11.2",
     "@sindresorhus/slugify": "^1.1.0",
+    "@tailwindcss/typography": "^0.2.0",
     "classnames": "^2.2.6",
     "focus-visible": "^5.1.0",
     "match-sorter": "^4.2.0",
