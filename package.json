@@ -1,10 +1,10 @@
 {
-  "name": "nextra-theme-docs",
-  "version": "0.2.7",
-  "description": "A Nextra theme for documentation sites.",
+  "name": "nextra-theme-books",
+  "version": "0.0.1",
+  "description": "A Nextra theme for books.",
   "main": "index.js",
-  "repository": "https://github.com/shuding/nextra-theme-docs.git",
-  "author": "Shu Ding <g@shud.in>",
+  "repository": "https://github.com/maccman/nextra-theme-books.git",
+  "author": "Shu Ding <g@shud.in>, Alex MacCaw",
   "license": "MIT",
   "files": [
     "dist/*",
