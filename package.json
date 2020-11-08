@@ -4,6 +4,7 @@
   "description": "A Nextra theme for books.",
   "main": "index.js",
   "repository": "https://github.com/maccman/nextra-theme-books.git",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "author": "Shu Ding <g@shud.in>, Alex MacCaw",
   "license": "MIT",
   "files": [
