@@ -22,9 +22,6 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
   experimental: {
     darkModeVariant: true
   },
