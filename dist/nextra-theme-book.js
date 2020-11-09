@@ -612,7 +612,7 @@ function File({
   let emoji;
 
   if (emojiRe.test(title)) {
-    [emoji] = emojiRe.match(title);
+    [emoji] = title.match(emojiRe);
     title = title.replace(emojiRe, '');
   }
 
