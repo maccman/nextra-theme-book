@@ -62,15 +62,25 @@ function File({ item, anchors }) {
   const route = useRouter().route + '/'
   const active = route.startsWith(item.route + '/')
 
-  const title = item.title
-  // if (item.title.startsWith('> ')) {
-  // title = title.substr(2)
+  const emojiRe = /\p{Emoji_Presentation}/gu
+
+  let title = item.title
+  let emoji
+
+  if (emojiRe.test(title)) {
+    [emoji] = emojiRe.match(title)
+    title = title.replace(emojiRe, '')
+  }
+
   if (anchors && anchors.length) {
     if (active) {
       return (
         <li className={active ? 'active' : ''}>
           <Link href={item.route}>
-            <a>{title}</a>
+            <a className="space-x-1">
+              {emoji && <span>{emoji}</span>}
+              {title}
+            </a>
           </Link>
           <ul>
             {anchors.map((anchor) => {
