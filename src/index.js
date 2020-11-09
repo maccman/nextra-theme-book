@@ -7,7 +7,6 @@ import slugify from '@sindresorhus/slugify'
 import 'focus-visible'
 import { SkipNavContent } from '@reach/skip-nav'
 import { ThemeProvider } from 'next-themes'
-import emojiRegexRGI from 'emoji-regex/text.js'
 
 import flatten from './utils/flatten'
 import reorderBasedOnMeta from './utils/reorder'
@@ -23,7 +22,7 @@ import defaultConfig from './misc/default.config'
 const TreeState = new Map()
 const titleType = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 const MenuContext = createContext(false)
-const emojiRe = emojiRegexRGI()
+const emojiRe = /\p{Extended_Pictographic}|\p{Emoji_Presentation}/gu
 
 function Emoji({ children }) {
   return (
