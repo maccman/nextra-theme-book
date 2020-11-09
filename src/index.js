@@ -7,6 +7,7 @@ import slugify from '@sindresorhus/slugify'
 import 'focus-visible'
 import { SkipNavContent } from '@reach/skip-nav'
 import { ThemeProvider } from 'next-themes'
+import emojiRegexRGI from 'emoji-regex/text.js'
 
 import flatten from './utils/flatten'
 import reorderBasedOnMeta from './utils/reorder'
@@ -22,6 +23,13 @@ import defaultConfig from './misc/default.config'
 const TreeState = new Map()
 const titleType = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 const MenuContext = createContext(false)
+const emojiRe = emojiRegexRGI()
+
+function Emoji({ children }) {
+  return (
+    <div className="inline-block w-5">{children}</div>
+  )
+}
 
 function Folder({ item, anchors }) {
   const route = useRouter().route + '/'
@@ -35,6 +43,14 @@ function Folder({ item, anchors }) {
     }
   }, [active])
 
+  let title = item.title
+  let emoji
+
+  if (emojiRe.test(title)) {
+    [emoji] = title.match(emojiRe)
+    title = title.replace(emojiRe, '')
+  }
+
   return (
     <li className={open ? 'active' : ''}>
       <button
@@ -44,7 +60,8 @@ function Folder({ item, anchors }) {
           render((x) => !x)
         }}
       >
-        {item.title}
+        {emoji && <Emoji>{emoji}</Emoji>}
+        <span>{title}</span>
       </button>
       <div
         style={{
@@ -62,8 +79,6 @@ function File({ item, anchors }) {
   const route = useRouter().route + '/'
   const active = route.startsWith(item.route + '/')
 
-  const emojiRe = /\p{Emoji_Presentation}/gu
-
   let title = item.title
   let emoji
 
@@ -77,9 +92,9 @@ function File({ item, anchors }) {
       return (
         <li className={active ? 'active' : ''}>
           <Link href={item.route}>
-            <a className="space-x-1">
-              {emoji && <span>{emoji}</span>}
-              {title}
+            <a>
+              {emoji && <Emoji>{emoji}</Emoji>}
+              <span>{title}</span>
             </a>
           </Link>
           <ul>
@@ -107,7 +122,10 @@ function File({ item, anchors }) {
   return (
     <li className={active ? 'active' : ''}>
       <Link href={item.route}>
-        <a onClick={() => setMenu(false)}>{title}</a>
+        <a onClick={() => setMenu(false)}>
+          {emoji && <Emoji>{emoji}</Emoji>}
+          <span>{title}</span>
+        </a>
       </Link>
     </li>
   )

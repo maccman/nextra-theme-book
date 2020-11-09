@@ -10,6 +10,7 @@ var slugify = _interopDefault(require('@sindresorhus/slugify'));
 require('focus-visible');
 var skipNav = require('@reach/skip-nav');
 var nextThemes = require('next-themes');
+var emojiRegexRGI = _interopDefault(require('emoji-regex/text.js'));
 var getTitle = _interopDefault(require('title'));
 var matchSorter = _interopDefault(require('match-sorter'));
 var cn = _interopDefault(require('classnames'));
@@ -563,6 +564,15 @@ var defaultConfig = {
 const TreeState = new Map();
 const titleType = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 const MenuContext = React.createContext(false);
+const emojiRe = emojiRegexRGI();
+
+function Emoji({
+  children
+}) {
+  return /*#__PURE__*/React__default.createElement("div", {
+    className: "inline-block w-5"
+  }, children);
+}
 
 function Folder({
   item,
@@ -579,6 +589,14 @@ function Folder({
       TreeState[item.route] = true;
     }
   }, [active]);
+  let title = item.title;
+  let emoji;
+
+  if (emojiRe.test(title)) {
+    [emoji] = title.match(emojiRe);
+    title = title.replace(emojiRe, '');
+  }
+
   return /*#__PURE__*/React__default.createElement("li", {
     className: open ? 'active' : ''
   }, /*#__PURE__*/React__default.createElement("button", {
@@ -587,7 +605,7 @@ function Folder({
       TreeState[item.route] = !open;
       render(x => !x);
     }
-  }, item.title), /*#__PURE__*/React__default.createElement("div", {
+  }, emoji && /*#__PURE__*/React__default.createElement(Emoji, null, emoji), /*#__PURE__*/React__default.createElement("span", null, title)), /*#__PURE__*/React__default.createElement("div", {
     style: {
       display: open ? undefined : 'none'
     }
@@ -607,7 +625,6 @@ function File({
   } = React.useContext(MenuContext);
   const route = router.useRouter().route + '/';
   const active = route.startsWith(item.route + '/');
-  const emojiRe = /[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u270A\u270B\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55\u{1F004}\u{1F0CF}\u{1F18E}\u{1F191}-\u{1F19A}\u{1F1E6}-\u{1F1FF}\u{1F201}\u{1F21A}\u{1F22F}\u{1F232}-\u{1F236}\u{1F238}-\u{1F23A}\u{1F250}\u{1F251}\u{1F300}-\u{1F320}\u{1F32D}-\u{1F335}\u{1F337}-\u{1F37C}\u{1F37E}-\u{1F393}\u{1F3A0}-\u{1F3CA}\u{1F3CF}-\u{1F3D3}\u{1F3E0}-\u{1F3F0}\u{1F3F4}\u{1F3F8}-\u{1F43E}\u{1F440}\u{1F442}-\u{1F4FC}\u{1F4FF}-\u{1F53D}\u{1F54B}-\u{1F54E}\u{1F550}-\u{1F567}\u{1F57A}\u{1F595}\u{1F596}\u{1F5A4}\u{1F5FB}-\u{1F64F}\u{1F680}-\u{1F6C5}\u{1F6CC}\u{1F6D0}-\u{1F6D2}\u{1F6D5}-\u{1F6D7}\u{1F6EB}\u{1F6EC}\u{1F6F4}-\u{1F6FC}\u{1F7E0}-\u{1F7EB}\u{1F90C}-\u{1F93A}\u{1F93C}-\u{1F945}\u{1F947}-\u{1F978}\u{1F97A}-\u{1F9CB}\u{1F9CD}-\u{1F9FF}\u{1FA70}-\u{1FA74}\u{1FA78}-\u{1FA7A}\u{1FA80}-\u{1FA86}\u{1FA90}-\u{1FAA8}\u{1FAB0}-\u{1FAB6}\u{1FAC0}-\u{1FAC2}\u{1FAD0}-\u{1FAD6}]/gu;
   let title = item.title;
   let emoji;
 
@@ -622,9 +639,7 @@ function File({
         className: active ? 'active' : ''
       }, /*#__PURE__*/React__default.createElement(Link, {
         href: item.route
-      }, /*#__PURE__*/React__default.createElement("a", {
-        className: "space-x-1"
-      }, emoji && /*#__PURE__*/React__default.createElement("span", null, emoji), title)), /*#__PURE__*/React__default.createElement("ul", null, anchors.map(anchor => {
+      }, /*#__PURE__*/React__default.createElement("a", null, emoji && /*#__PURE__*/React__default.createElement(Emoji, null, emoji), /*#__PURE__*/React__default.createElement("span", null, title))), /*#__PURE__*/React__default.createElement("ul", null, anchors.map(anchor => {
         const slug = slugify(ReactDOMServer.renderToStaticMarkup(anchor) || '');
         return /*#__PURE__*/React__default.createElement("a", {
           href: '#' + slug,
@@ -647,7 +662,7 @@ function File({
     href: item.route
   }, /*#__PURE__*/React__default.createElement("a", {
     onClick: () => setMenu(false)
-  }, title)));
+  }, emoji && /*#__PURE__*/React__default.createElement(Emoji, null, emoji), /*#__PURE__*/React__default.createElement("span", null, title))));
 }
 
 function Menu({

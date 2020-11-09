@@ -126,15 +126,79 @@ figure figcaption {
 .dark .sidebar a:hover, .dark .sidebar button:hover {
   @apply text-white bg-gray-900;
 }
-content ul {
-  @apply list-disc ml-6 mt-6;
+
+code {
+  @apply text-sm;
 }
-content li {
-  @apply mt-2;
+
+blockquote {
+  @apply bg-gray-300 px-6 py-4 mt-2 rounded-md;
+  margin-top: 1rem !important;
 }
+
+blockquote p {
+  @apply leading-6;
+  margin: 0;
+}
+
 content ol {
-  @apply list-decimal;
+  margin: 1.3em 0;
+  list-style: none;
+  counter-reset: list-counter;
 }
+
+content ol > li {
+  padding-left: 1.4em;
+  margin: .5em 0;
+  position: relative;
+  counter-increment: list-counter;
+}
+
+content ol > li::before {
+  content: counter(list-counter) ".";
+  position: absolute;
+  left: 0;
+  font-weight: 400;
+  color: #71717a;
+}
+
+content ul > li {
+  position: relative;
+}
+
+content ul > li::before {
+  content: "";
+  position: absolute;
+  background-color: #d4d4d8;
+  border-radius: 50%;
+}
+
+content li p {
+  line-height: 1.5em;
+}
+
+content ul {
+  margin: 1.3em 0;
+  list-style: none;
+}
+
+content ul > li {
+  padding-left: 1.4em;
+  margin: .5em 0;
+  position: relative;
+}
+
+content ul > li::before {
+  content: "";
+  position: absolute;
+  background-color: #d4d4d8;
+  border-radius: 50%;
+  width: .375em;
+  height: .375em;
+  top: .6875em;
+  left: .25em;
+}
+
 .subheading-anchor {
   margin-top: -84px;
   display: inline-block;

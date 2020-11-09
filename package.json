@@ -1,10 +1,12 @@
 {
   "name": "nextra-theme-book",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A Nextra theme for books.",
   "main": "index.js",
   "repository": "https://github.com/maccman/nextra-theme-book.git",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "author": "Shu Ding <g@shud.in>, Alex MacCaw",
   "license": "MIT",
   "files": [
@@ -24,6 +26,7 @@
     "@reach/skip-nav": "^0.11.2",
     "@sindresorhus/slugify": "^1.1.0",
     "classnames": "^2.2.6",
+    "emoji-regex": "^9.2.0",
     "focus-visible": "^5.1.0",
     "match-sorter": "^4.2.0",
     "next-themes": "^0.0.8",
