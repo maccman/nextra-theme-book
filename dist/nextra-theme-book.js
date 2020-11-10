@@ -569,7 +569,7 @@ function Emoji({
   children
 }) {
   return /*#__PURE__*/React__default.createElement("div", {
-    className: "inline-block w-5 mr-1"
+    className: "inline-block w-5 mr-xxs"
   }, children);
 }
 

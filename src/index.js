@@ -26,7 +26,7 @@ const emojiRe = /\p{Extended_Pictographic}|\p{Emoji_Presentation}/gu
 
 function Emoji({ children }) {
   return (
-    <div className="inline-block w-5 mr-1">{children}</div>
+    <div className="inline-block w-5 mr-xxs">{children}</div>
   )
 }
 

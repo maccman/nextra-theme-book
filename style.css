@@ -1109,6 +1109,10 @@ figure figcaption {
   margin-top: 6rem;
 }
 
+.mr-xxs {
+  margin-right: .1em;
+}
+
 .-mr-2 {
   margin-right: -0.5rem;
 }
