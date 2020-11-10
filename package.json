@@ -1,6 +1,6 @@
 {
   "name": "nextra-theme-book",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "A Nextra theme for books.",
   "main": "index.js",
   "repository": "https://github.com/maccman/nextra-theme-book.git",
