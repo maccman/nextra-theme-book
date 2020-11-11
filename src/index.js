@@ -33,7 +33,7 @@ function Emoji({ children }) {
 function Folder({ item, anchors }) {
   const route = useRouter().route + '/'
   const active = route.startsWith(item.route + '/')
-  const open = TreeState[item.route] ?? true
+  const open = TreeState[item.route] ?? false
   const [_, render] = useState(false)
 
   useEffect(() => {

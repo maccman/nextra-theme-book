@@ -581,7 +581,7 @@ function Folder({
 
   const route = router.useRouter().route + '/';
   const active = route.startsWith(item.route + '/');
-  const open = (_TreeState$item$route = TreeState[item.route]) != null ? _TreeState$item$route : true;
+  const open = (_TreeState$item$route = TreeState[item.route]) != null ? _TreeState$item$route : false;
   const [_, render] = React.useState(false);
   React.useEffect(() => {
     if (active) {
